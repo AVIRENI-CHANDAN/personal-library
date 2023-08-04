@@ -62,7 +62,6 @@ export default class Button extends Component {
             Y: mousePos.Y - rippleContainer.top - rippleSize / 2
         }
         this.setState({ showRipple: true, ripplePos: ripplePos, rippleSize: rippleSize });
-
         setTimeout(() => {
             this.setState({ showRipple: false, rippleSize: 0 });
             if (this.props.onClick) { this.props.onClick(); }
