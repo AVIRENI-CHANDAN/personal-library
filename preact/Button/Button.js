@@ -42,7 +42,7 @@ export default class Button extends Component {
         this.handleMouseDown = this.handleMouseDown.bind(this);
     }
 
-    handleClick(event) { this.handleRipple(event); if (this.props.onClick) { this.props.onClick(); } }
+    handleClick(event) { this.handleRipple(event); if (this.props.onClick && !this.props.ripple) { this.props.onClick(); } }
     handleDoubleClick(event) { if (this.props.onDoubleClick) { this.props.onDoubleClick(); } }
     handleHover(event) { if (this.props.onHover) { this.props.onHover(); } }
     handleMouseEnter(event) { if (this.props.onMouseEnter) { this.props.onMouseEnter(); } }
@@ -62,16 +62,10 @@ export default class Button extends Component {
             Y: mousePos.Y - rippleContainer.top - rippleSize / 2
         }
         this.setState({ showRipple: true, ripplePos: ripplePos, rippleSize: rippleSize });
-
-        const rippleTag = event.currentTarget.children;
-        console.log("Target:", rippleTag);
-        console.log("Ripple container:", rippleContainer);
-        console.log("Mouse position:", mousePos);
-        console.log("Ripple position:", ripplePos);
-
         setTimeout(() => {
-            this.setState({ showRipple: false });
-        }, 600);
+            this.setState({ showRipple: false, rippleSize: 0 });
+            if (this.props.onClick) { this.props.onClick(); }
+        }, 500);
     }
 
     render() {
