@@ -1,0 +1,30 @@
+.RippleBox {
+    content: "";
+    position: relative;
+    background-color: transparent;
+    z-index: 2;
+    height: 50vh;
+    width: 50vw;
+    border: 1px solid red;
+}
+
+.Ripple {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border-radius: 50%;
+    animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(5);
+        opacity: 0;
+    }
+}
