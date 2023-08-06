@@ -53,10 +53,11 @@ export default class TextInputField extends Component {
 
     handleInputChange(event) {
         if (event.isTrusted) {
+            const inputValue = event.target.value;
             this.setState((prevState) => ({
                 input: {
                     ...prevState.input,
-                    value: event.target.value,
+                    value: inputValue,
                 },
             }));
         }
@@ -76,11 +77,14 @@ export default class TextInputField extends Component {
         this.setState((prevState) => ({
             input: {
                 ...prevState.input,
-                focused: false
+                focused: this.state.input.value.length > 0
             }
         })
         );
     };
+    componentDidUpdate() {
+        console.log(this.state);
+    }
 
     render() {
         const border_value = "1px solid gray";
